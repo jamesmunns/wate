@@ -2,6 +2,7 @@ from wate import app
 import os
 from collections import namedtuple
 import psycopg2 as pg
+from flask import g
 
 DB_USER_KEY = "WATEDBUSER"
 DB_PASS_KEY = "WATEDBPASS"

@@ -9,4 +9,4 @@ assert DB_USER_KEY in os.environ, "Set the Database Username!"
 assert DB_PASS_KEY in os.environ, "Set the Database Password!"
 
 # Run
-app.run(host='0.0.0.0')
+app.run(host='0.0.0.0', debug = True)

@@ -3,7 +3,7 @@ import db_ops
 
 @app.route('/')
 def index():
-    users = users_everything_get()
+    users  = db_ops.users_everything_get()
     header = db_ops.COMPLETE_USER_SCHEMA
 
     retval = ""
@@ -15,7 +15,9 @@ def index():
 
     # Now print each user
     for user in users:
-        retval += ( str(user) + "<br>" )
+        for item in user:
+            retval += ( str(item) + " " )
+        retval += "<br>"
 
     return retval
 
