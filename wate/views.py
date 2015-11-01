@@ -23,7 +23,7 @@ def user_data(username=None):
         return "Missing data!", 520
 
     retval  = "<title>{}</title>".format(username)
-    retval  = "<h1>{}</h1>".format(username) 
+    retval  = "<h1>{}</h1>".format(username)
     retval += tablemaker(["weight", "date"], mpts)
 
     return retval
@@ -40,7 +40,10 @@ def user_graph(username=None):
 
     template_array = u""
     for pt in mpts:
-        template_array += u"[new Date({}, {}, {}),{}],".format(pt.date.year, pt.date.month-1, pt.date.day, pt.weight_lbs)
+        template_array += u"[new Date({}, {}, {}),{}],".format( pt.date.year,
+                                                                pt.date.month-1,    # Google month items are zero indexed
+                                                                pt.date.day,
+                                                                pt.weight_lbs )
     template_array=template_array.rstrip(',')
 
     return render_template('usergraph.html', username=username, date_wgt_array=template_array)

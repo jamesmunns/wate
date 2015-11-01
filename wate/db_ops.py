@@ -6,10 +6,12 @@ from flask import g
 
 DB_USER_KEY = "WATEDBUSER"
 DB_PASS_KEY = "WATEDBPASS"
+DB_HOST_KEY = "WATEDBHOST"
 
 dbname   = "wate"
 username = os.environ[DB_USER_KEY]
 password = os.environ[DB_PASS_KEY]
+host     = os.environ[DB_HOST_KEY]
 
 COMPLETE_USER_SCHEMA = [ "id",
                          "name",
@@ -71,7 +73,7 @@ def all_weights_and_dates_get(username):
 def get_db():
     db = getattr(g, '_dbc', None)
     if db is None:
-        db = g._dbc = pg.connect(dbname=dbname, user=username, password=password)
+        db = g._dbc = pg.connect(dbname=dbname, user=username, password=password, host=host)
     return db
 
 @app.teardown_appcontext
