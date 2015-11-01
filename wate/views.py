@@ -6,18 +6,23 @@ def index():
     users  = db_ops.users_everything_get()
     header = db_ops.COMPLETE_USER_SCHEMA
 
-    retval = ""
+    retval = '<table border="1">'
+
 
     # First, print the header
+    retval += '<tr>'
     for item in header:
-        retval += ( item + ", " )
-    retval += ( "<br>"*2 )
+        retval += "<th>{}</th>".format(item)
+    retval += '</tr>'
 
     # Now print each user
     for user in users:
+        retval += "<tr>"
         for item in user:
-            retval += ( str(item) + " " )
-        retval += "<br>"
+            retval += "<td>{}</td>".format(item)
+        retval += "</tr>"
+
+    retval += "</table>"
 
     return retval
 
