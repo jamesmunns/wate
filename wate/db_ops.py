@@ -60,7 +60,7 @@ def all_weights_and_dates_get(username):
     measure_pts = []
 
     with get_db().cursor() as cur:
-        cur.execute(get_all_wgt)
+        cur.execute(get_all_wgt, [username])
 
         for mpt in cur.fetchall():
             measure_pts.append(Measurement(*mpt))

@@ -16,12 +16,13 @@ def user_data(username=None):
     if username is None:
         return "No such user!", 520
 
-    mpts = db_opts.all_weights_and_dates_get(username)
+    mpts = db_ops.all_weights_and_dates_get(username)
 
     if len(mpts) == 0:
         return "Missing data!", 520
 
     retval  = "<title>{}</title>".format(username)
+    retval  = "<h1>{}</h1>".format(username) 
     retval += tablemaker(["weight", "date"], mpts)
 
     return retval
