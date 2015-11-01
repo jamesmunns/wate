@@ -1,5 +1,6 @@
 from wate import app
 import db_ops
+from flask import render_template
 
 @app.route('/')
 def index():
@@ -32,14 +33,14 @@ def user_graph(username=None):
     if username is None:
         return "No such user!", 520
 
-    mpts = db_opts.all_weights_and_dates_get(username)
+    mpts = db_ops.all_weights_and_dates_get(username)
 
     if len(mpts) == 0:
         return "Missing data!", 520
 
     template_array = u""
     for pt in mpts:
-        template_array += u"[new Date({}, {}, {}),{}],".format(wgt[1].year,wgt[1].month-1,wgt[1].day, wgt[0])
+        template_array += u"[new Date({}, {}, {}),{}],".format(pt.date.year, pt.date.month-1, pt.date.day, pt.weight_lbs)
     template_array=template_array.rstrip(',')
 
     return render_template('usergraph.html', username=username, date_wgt_array=template_array)
