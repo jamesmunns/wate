@@ -1,8 +1,8 @@
 # Import the app object
 import os
 from wate import app
-from wate.db_ops import DB_USER_KEY
-from wate.db_ops import DB_PASS_KEY
+from wate.db_ops import DB_USER_KEY, DB_PASS_KEY, DB_HOST_KEY
+
 
 # Check for database variables
 assert DB_USER_KEY in os.environ, "Set the Database Username!"
