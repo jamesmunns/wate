@@ -1,6 +1,6 @@
 from wate import app
 import db_ops
-from flask import render_template, request
+from flask import render_template, request, send_from_directory
 
 @app.route('/')
 def index():
@@ -13,8 +13,10 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    print "login"
     if request.method == 'GET':
-        return "GET"
+        print "get"
+        return app.send_static_file('login.html')
     else:
         return str(request.form)
 
