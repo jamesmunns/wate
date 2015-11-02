@@ -1,6 +1,6 @@
 from wate import app
 import db_ops
-from flask import render_template
+from flask import render_template, request
 
 @app.route('/')
 def index():
@@ -10,6 +10,13 @@ def index():
     retval = tablemaker( header, users )
 
     return retval
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return "GET"
+    else:
+        return str(request.form)
 
 
 @app.route('/user/<username>')
@@ -44,6 +51,7 @@ def user_graph(username=None):
                                                                 pt.date.month-1,    # Google month items are zero indexed
                                                                 pt.date.day,
                                                                 pt.weight_lbs )
+    # Remove the trailing comma from the loop
     template_array=template_array.rstrip(',')
 
     return render_template('usergraph.html', username=username, date_wgt_array=template_array)
