@@ -28,3 +28,5 @@ app.session_interface = sasi( app=app,
 
 
 import wate.iterviews
+from wate.db_models import User
+
